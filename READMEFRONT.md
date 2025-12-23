@@ -266,3 +266,10 @@ This frontend application requires a compatible backend API with the following e
 
 **wissal lamouadene** - Internship Interview Project
 
+---
+
+## DEMO VIDEO LINK
+
+https://drive.google.com/file/d/1eLo084vSOfFMcBWswFPkWYQdhcmlscyJ/view?usp=sharing
+
+
