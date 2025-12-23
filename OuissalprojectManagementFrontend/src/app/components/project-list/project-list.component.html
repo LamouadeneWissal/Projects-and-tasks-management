@@ -1,0 +1,178 @@
+<!-- Project List Page -->
+<div class="max-w-7xl mx-auto pt-24 p-6">
+  <!-- Unified Header Bar -->
+  <header class="w-full fixed top-0 left-0 z-20 flex items-center justify-between bg-white/90 px-10 py-3 shadow-sm" style="backdrop-filter: blur(6px);">
+    <div class="flex items-center gap-3">
+      <img src="assets/logo.png" alt="App Logo" class="w-12 h-12 object-contain">
+      <span class="ml-2 text-xl font-bold text-royal tracking-tight select-none">Task Flow</span>
+    </div>
+    <!-- Search Bar -->
+    <form class="flex items-center w-full max-w-xs" style="margin-left:680px;" (submit)="$event.preventDefault();">
+      <input
+        type="text"
+        class="w-full bg-transparent pl-2 text-royal placeholder:text-gray-400 outline-none rounded-full border border-lavender py-1 px-3"
+        placeholder="Search project name..."
+        [(ngModel)]="searchTerm"
+        name="search"
+      />
+      <button type="submit" class="relative p-2 bg-transparent rounded-full"></button>
+    </form>
+    <div class="flex gap-2">
+      <button routerLink="/projects/create" class="flex items-center gap-2 text-sm px-4 py-2 font-bold rounded-lg bg-gradient-to-r from-pink-500 via-red-400 to-yellow-300 text-white shadow-lg hover:from-yellow-300 hover:to-pink-500 transition-all duration-200 transform hover:scale-110">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+        </svg>
+        New Project
+      </button>
+      <button (click)="logout()" class="btn-secondary flex items-center gap-1 text-sm px-3 py-1">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7"></path>
+        </svg>
+        Log Out
+      </button>
+    </div>
+  </header>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="text-center py-16">
+    <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+    <p class="text-gray-600 mt-4">Loading your projects...</p>
+  </div>
+  
+  <!-- Error State -->
+  <div *ngIf="errorMessage" class="bg-red-50 border-l-4 border-red-500 text-red-700 px-6 py-4 rounded-r-lg mb-6">
+    <div class="flex items-center gap-3">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <span>{{ errorMessage }}</span>
+    </div>
+  </div>
+  
+  <!-- Empty State -->
+  <div *ngIf="!loading && !errorMessage && projects.length === 0" class="text-center py-16 bg-white/50 rounded-2xl">
+    <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 mb-4">
+      <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path>
+      </svg>
+    </div>
+    <h3 class="text-xl font-semibold text-gray-700 mb-2">No projects yet</h3>
+    <p class="text-gray-500 mb-6">Create your first project to get started!</p>
+    <button routerLink="/projects/create" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition duration-200">
+      Create Your First Project
+    </button>
+  </div>
+
+  <!-- Projects Grid -->
+    <!-- Dashboard Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+      <div class="rounded-xl p-4 flex flex-col items-center bg-gradient-to-br from-royal via-amethyst to-lavender text-white shadow-md transition-transform duration-200 hover:scale-105 hover:shadow-lg">
+        <span class="text-xs font-medium mb-1 opacity-80">Projects</span>
+        <span class="text-2xl font-bold">{{ projects.length }}</span>
+        <span class="text-xs mt-1 opacity-80">Total Projects</span>
+      </div>
+      <div class="rounded-xl p-4 flex flex-col items-center bg-gradient-to-br from-royal via-amethyst to-lavender text-white shadow-md transition-transform duration-200 hover:scale-105 hover:shadow-lg">
+        <span class="text-xs font-medium mb-1 opacity-80">Tasks</span>
+        <span class="text-2xl font-bold">{{ totalTasks }}</span>
+        <span class="text-xs mt-1 opacity-80">Total Tasks</span>
+      </div>
+      <div class="rounded-xl p-4 flex flex-col items-center bg-gradient-to-br from-royal via-amethyst to-lavender text-white shadow-md transition-transform duration-200 hover:scale-105 hover:shadow-lg">
+        <span class="text-xs font-medium mb-1 opacity-80">Completed</span>
+        <span class="text-2xl font-bold">{{ completedPercentage }}%</span>
+        <span class="text-xs mt-1 opacity-80">Tasks Completed</span>
+      </div>
+    </div>
+    <h2 class="text-xl font-bold text-royal mb-8">My Projects</h2>
+  <div *ngIf="projects && projects.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div *ngFor="let project of paginatedProjects; trackBy: trackByProjectId" 
+      class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 flex flex-col border border-gray-100 hover:border-blue-200 transform hover:-translate-y-1">
+      <!-- Project Header -->
+      <div class="flex items-start justify-between mb-3">
+        <h3 class="text-xl font-bold text-gray-800 line-clamp-1">{{ project.title }}</h3>
+        <div class="flex gap-1">
+          <button [routerLink]="['/projects', project.id, 'edit']" class="p-2 text-gray-400 hover:text-blue-600 transition-colors" title="Edit">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+            </svg>
+          </button>
+          <button (click)="deleteProject(project.id)" class="p-2 text-gray-400 hover:text-red-600 transition-colors" title="Delete">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <p class="text-gray-600 mb-4 flex-grow line-clamp-2 text-sm">{{ project.description }}</p>
+      
+      <!-- Progress Section -->
+      <div class="mb-5">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-sm font-medium text-gray-600">Progress</span>
+          <span class="text-sm font-bold" [ngClass]="(project.progressPercentage || 0) === 100 ? 'text-green-600' : 'text-blue-600'">
+            {{ project.progressPercentage || 0 }}%
+          </span>
+        </div>
+        <div class="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden">
+          <div class="h-2.5 rounded-full transition-all duration-500 ease-out"
+            [ngClass]="(project.progressPercentage || 0) === 100 ? 'bg-gradient-to-r from-green-400 to-green-600' : 'bg-gradient-to-r from-blue-400 to-purple-500'"
+            [style.width.%]="project.progressPercentage || 0"></div>
+        </div>
+        <p class="text-xs text-gray-500 mt-2 flex items-center gap-1">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+          </svg>
+          {{ project.completedTasks || 0 }} of {{ project.totalTasks || 0 }} tasks completed
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="grid grid-cols-2 gap-3 mt-auto">
+        <button [routerLink]="['/projects', project.id]" 
+          class="bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium py-2.5 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+          </svg>
+          Tasks
+        </button>
+        <button [routerLink]="['/projects', project.id, 'tasks', 'create']" 
+          class="bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white text-sm font-medium py-2.5 px-4 rounded-lg transition-all duration-200 flex items-center justify-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+          Add Task
+        </button>
+      </div>
+    </div>
+    <!-- Pagination Controls (moved outside ngFor) -->
+    <div *ngIf="totalPages > 1" class="w-full flex justify-center items-center mt-10 mb-4">
+      <!-- Pagination -->
+      <nav class="flex items-center gap-x-1" aria-label="Pagination">
+        <button type="button" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1"
+          class="min-h-9.5 min-w-9.5 py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none" aria-label="Previous">
+          <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15 18-6-6 6-6"></path>
+          </svg>
+          <span class="sr-only">Previous</span>
+        </button>
+        <div class="flex items-center gap-x-1">
+          <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+            <button type="button" (click)="goToPage(i + 1)"
+              [class]="currentPage === i + 1 ? 'min-h-9.5 min-w-9.5 flex justify-center items-center border border-gray-200 text-gray-800 py-2 px-3 text-sm rounded-lg focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none' : 'min-h-9.5 min-w-9.5 flex justify-center items-center border border-transparent text-gray-800 hover:bg-gray-100 py-2 px-3 text-sm rounded-lg focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none'"
+              [attr.aria-current]="currentPage === i + 1 ? 'page' : null">
+              {{ i + 1 }}
+            </button>
+          </ng-container>
+        </div>
+        <button type="button" (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages"
+          class="min-h-9.5 min-w-9.5 py-2 px-2.5 inline-flex justify-center items-center gap-x-2 text-sm rounded-lg border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none" aria-label="Next">
+          <span class="sr-only">Next</span>
+          <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6"></path>
+          </svg>
+        </button>
+      </nav>
+      <!-- End Pagination -->
+    </div>
+  </div>
+</div>

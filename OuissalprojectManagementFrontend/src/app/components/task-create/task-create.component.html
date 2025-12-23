@@ -1,0 +1,71 @@
+<!-- Task Create Page -->
+<div class="w-full h-screen flex items-center justify-center">
+  <div class="max-w-[500px] w-full bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-gray-100" style="min-height:600px;">
+    <!-- Header -->
+    <div class="text-center mb-8">
+            <button routerLink="/dashboard" class="absolute left-6 top-6 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium py-1 px-3 rounded-xl flex items-center gap-1 text-xs shadow-sm transition-all duration-200">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+              </svg>
+              Back
+            </button>
+      <div style="height:30px;"></div>
+      <img src="assets/task.png" alt="Task Icon" class="mx-auto w-14 h-14 object-contain mb-1" />
+      <h2 class="text-[22px] font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Add New Task</h2>
+      <p class="text-[15px] text-gray-500 mt-1 mb-8">Create a task for your project</p>
+      <div class="mt-16"></div>
+    </div>
+    
+    <!-- Form -->
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+      <div class="mb-5">
+        <label for="title" class="block text-gray-700 font-medium mb-2">Task Title</label>
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+            </svg>
+          </span>
+          <input type="text" id="title" formControlName="title" 
+            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200" 
+            placeholder="Enter task title" required>
+        </div>
+      </div>
+      
+      <div class="mb-5">
+        <label for="description" class="block text-gray-700 font-medium mb-2">Description</label>
+        <div class="relative">
+          <span class="absolute top-3 left-3 text-gray-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path>
+            </svg>
+          </span>
+          <textarea id="description" formControlName="description" rows="4" 
+            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200 resize-none" 
+            placeholder="Describe the task..." required></textarea>
+        </div>
+      </div>
+      
+      <div class="mb-6">
+        <label for="dueDate" class="block text-gray-700 font-medium mb-2">Due Date</label>
+        <div class="relative">
+          <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </span>
+          <input type="date" id="dueDate" formControlName="dueDate" 
+            class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200" required>
+        </div>
+      </div>
+      
+      <button type="submit" [disabled]="taskForm.invalid" 
+        class="w-full bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 disabled:from-gray-400 disabled:to-gray-500 text-white font-semibold py-3 rounded-xl transition-all duration-200 transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+        </svg>
+        Create Task
+      </button>
+    </form>
+  </div>
+</div>

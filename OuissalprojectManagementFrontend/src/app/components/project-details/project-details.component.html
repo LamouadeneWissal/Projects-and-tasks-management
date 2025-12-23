@@ -1,0 +1,106 @@
+<!-- Project Details Page -->
+<div class="max-w-6xl mx-auto p-6">
+  <!-- Loading State -->
+  <div *ngIf="loading" class="text-center py-16">
+    <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+    <p class="text-gray-600 mt-4">Loading project details...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="!loading && errorMessage" class="bg-red-50 border-l-4 border-red-500 rounded-r-lg p-6 mb-6">
+    <div class="flex items-center gap-3">
+      <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <span class="text-red-700">{{ errorMessage }}</span>
+    </div>
+    <button routerLink="/projects" class="mt-4 bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 flex items-center gap-2">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+      </svg>
+      Back to Projects
+    </button>
+  </div>
+
+  <!-- Project Details -->
+  <div *ngIf="!loading && !errorMessage && project">
+    <!-- Project Header and Stats (no card) -->
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-6">
+      <div class="flex-1">
+        <div class="flex items-center">
+          <h2 class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-0">{{ project?.title }}</h2>
+          <form class="flex items-center w-full max-w-xs" style="margin-left:500px; margin-top:25px;" (submit)="$event.preventDefault();">
+            <input
+              type="text"
+              class="w-full bg-transparent pl-2 text-royal placeholder:text-gray-400 outline-none rounded-full border border-lavender py-1 px-3"
+              placeholder="Search task name..."
+              [(ngModel)]="taskSearchTerm"
+              name="taskSearch"
+              autocomplete="off"
+            />
+          </form>
+        </div>
+        <p class="text-gray-600 mt-1">{{ project?.description }}</p>
+      </div>
+      <div class="flex flex-wrap gap-2 mt-2 sm:mt-0">
+        <button [routerLink]="['/projects', project?.id, 'tasks', 'create']" 
+          class="bg-gradient-to-r from-green-500 to-teal-500 hover:from-green-600 hover:to-teal-600 text-white font-semibold py-2.5 px-5 rounded-xl transition-all duration-200 flex items-center gap-2 shadow-md">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+          </svg>
+          Add Task
+        </button>
+        <button routerLink="/projects" 
+          class="bg-gray-100 hover:bg-gray-200 text-gray-700 p-2 rounded-full transition-all duration-200 flex items-center justify-center shadow-sm" 
+          title="Back to Projects">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <!-- Space between title/desc and stats cards -->
+    <div class="h-8"></div>
+    <!-- Stats Grid (no card backgrounds) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div class="bg-white rounded-2xl p-5 flex items-center gap-3 shadow-md border border-gray-100 hover:shadow-lg transition-all duration-200">
+        <div class="p-3 bg-blue-100 rounded-lg">
+          <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="text-xs text-gray-500 uppercase font-medium">Created</p>
+          <p class="text-gray-800 font-semibold">{{ project?.createdAt | date:'mediumDate' }}</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 flex items-center gap-3 shadow-md border border-gray-100 hover:shadow-lg transition-all duration-200">
+        <div class="p-3 bg-purple-100 rounded-lg">
+          <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="text-xs text-gray-500 uppercase font-medium">Tasks</p>
+          <p class="text-gray-800 font-semibold">{{ project?.completedTasks }} / {{ project?.totalTasks }} completed</p>
+        </div>
+      </div>
+      <div class="bg-white rounded-2xl p-5 flex items-center gap-3 shadow-md border border-gray-100 hover:shadow-lg transition-all duration-200">
+        <div class="p-3 rounded-lg" [ngClass]="project?.progressPercentage === 100 ? 'bg-green-100' : 'bg-orange-100'">
+          <svg class="w-6 h-6" [ngClass]="project?.progressPercentage === 100 ? 'text-green-600' : 'text-orange-600'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="text-xs text-gray-500 uppercase font-medium">Progress</p>
+          <p class="font-bold text-xl" [ngClass]="project?.progressPercentage === 100 ? 'text-green-600' : 'text-orange-600'">
+            {{ project?.progressPercentage | number:'1.0-0' }}%
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task List -->
+    <app-task-list [projectId]="project.id" [searchTerm]="taskSearchTerm" (tasksChanged)="onTasksChanged()" #taskList></app-task-list>
+  </div>
+</div>

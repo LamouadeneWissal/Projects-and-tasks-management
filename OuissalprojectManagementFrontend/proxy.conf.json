@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "http://localhost:9095",
+    "secure": false,
+    "changeOrigin": true,
+    "headers": {
+      "Origin": "http://localhost:9095"
+    },
+    "logLevel": "debug"
+  }
+}

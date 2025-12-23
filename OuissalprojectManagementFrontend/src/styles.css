@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Minimalist & Modern Base Styles */
+body {
+	@apply bg-lavender text-plum font-sans;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	@apply text-royal font-bold;
+}
+
+a {
+	@apply text-amethyst hover:text-royal transition-colors;
+}
+
+button, .btn-primary {
+	@apply bg-royal text-white rounded-lg px-6 py-2 font-semibold shadow hover:bg-amethyst transition-colors;
+}
+
+.btn-secondary {
+	@apply bg-amethyst text-white rounded-lg px-6 py-2 font-semibold shadow hover:bg-royal transition-colors;
+}
+
+.card, .task-card {
+	@apply bg-white border border-lavender rounded-xl shadow p-6;
+}
