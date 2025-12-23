@@ -129,7 +129,7 @@ USE ouissal_pm_db;
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/LamouadeneWissal/Projects-and-tasks-management.git
    cd Ouissal_project_management_backend
    ```
 
