@@ -36,9 +36,6 @@ Ouissal_project_task_management/
 
 ---
 
-
----
-
 ## ⚙️ Installation & Setup
 
 ### 1. Clone the repository
@@ -67,28 +64,32 @@ npm start
 
 ---
 
-## 🔗 API Endpoints
 
-See backend README for full details. Key endpoints:
-- `POST /api/auth/register` - Register
-- `POST /api/auth/login` - Login
-- `GET /api/projects` - List projects
-- `POST /api/projects` - Create project
-- `GET /api/projects/:id/tasks` - List tasks
-- `POST /api/projects/:id/tasks` - Create task
 - `PATCH /api/tasks/:id/complete` - Complete task
 
 ---
 
-## 📸 Screenshots
+# 📸 Screenshots
 
+Below are screenshots showcasing the application's UI and features:
 
-- Dashboard & List of Projects
-- Login Form
-- Signup Form
-- New Project Form
-- New Task Form
-- Tasks List Page
+### Dashboard & List of Projects
+![Dashboard and List of Projects](OuissalprojectManagementFrontend/src/assets/screenshots/dashboard%20and%20list%20of%20projects.png)
+
+### Login Form
+![Login Form](OuissalprojectManagementFrontend/src/assets/screenshots/login%20form.png)
+
+### Signup Form
+![Signup Form](OuissalprojectManagementFrontend/src/assets/screenshots/signup%20form.png)
+
+### New Project Form
+![New Project Form](OuissalprojectManagementFrontend/src/assets/screenshots/new%20project%20form%20.png)
+
+### New Task Form
+![New Task Form](OuissalprojectManagementFrontend/src/assets/screenshots/new%20task%20form%20.png)
+
+### Tasks List Page
+![Tasks List Page](OuissalprojectManagementFrontend/src/assets/screenshots/tasks%20list%20page.png)
 
 ---
 
