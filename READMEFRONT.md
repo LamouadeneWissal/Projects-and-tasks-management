@@ -25,22 +25,22 @@ Add your screenshots below to showcase the application UI and features:
 
 
 ### Dashboard & List of Projects
-![Dashboard and List of Projects](src/assets/screenshots/dashboard%20and%20list%20of%20projects.png)
+![Dashboard and List of Projects](OuissalprojectManagementFrontend/src/assets/screenshots/dashboard%20and%20list%20of%20projects.png)
 
 ### Login Form
-![Login Form](src/assets/screenshots/login%20form.png)
+![Login Form](OuissalprojectManagementFrontend/src/assets/screenshots/login%20form.png)
 
 ### Signup Form
-![Signup Form](src/assets/screenshots/signup%20form.png)
+![Signup Form](OuissalprojectManagementFrontend/src/assets/screenshots/signup%20form.png)
 
 ### New Project Form
-![New Project Form](src/assets/screenshots/new%20project%20form%20.png)
+![New Project Form](OuissalprojectManagementFrontend/src/assets/screenshots/new%20project%20form%20.png)
 
 ### New Task Form
-![New Task Form](src/assets/screenshots/new%20task%20form.png)
+![New Task Form](OuissalprojectManagementFrontend/src/assets/screenshots/new%20task%20form.png)
 
 ### Tasks List Page
-![Tasks List Page](src/assets/screenshots/tasks%20list%20page.png)
+![Tasks List Page](OuissalprojectManagementFrontend/src/assets/screenshots/tasks%20list%20page.png)
 
 ---
 
@@ -264,10 +264,5 @@ This frontend application requires a compatible backend API with the following e
 
 ## 👩‍💻 Author
 
-**Ouissal** - Internship Interview Project
+**wissal lamouadene** - Internship Interview Project
 
----
-
-## 📄 License
-
-This project is created for educational and interview assessment purposes.

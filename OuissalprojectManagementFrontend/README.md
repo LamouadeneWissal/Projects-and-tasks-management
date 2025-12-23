@@ -264,10 +264,5 @@ This frontend application requires a compatible backend API with the following e
 
 ## 👩‍💻 Author
 
-**Ouissal** - Internship Interview Project
+**wissal lamouadene** - Internship Interview Project
 
----
-
-## 📄 License
-
-This project is created for educational and interview assessment purposes.

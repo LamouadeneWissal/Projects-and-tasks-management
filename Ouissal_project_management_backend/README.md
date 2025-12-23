@@ -320,23 +320,10 @@ curl -X PATCH http://localhost:9095/api/tasks/1/complete \
 
 ---
 
-## 🐛 Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| Port 9095 already in use | Kill the process: `netstat -ano \| findstr :9095` then `taskkill /PID <pid> /F` |
-| Database connection failed | Ensure MySQL is running and credentials are correct |
-| 403 Forbidden | Check if JWT token is valid and included in Authorization header |
-| CORS errors | Verify frontend is running on `http://localhost:4200` |
-
----
 
 ## 👤 Author
 
-**Ouissal** - Internship Interview Project
+**wissal lamouadene** - Internship Interview Project
 
----
 
-## 📄 License
-
-This project is created for educational and interview purposes.
