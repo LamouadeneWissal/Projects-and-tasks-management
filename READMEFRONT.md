@@ -37,7 +37,7 @@ Add your screenshots below to showcase the application UI and features:
 ![New Project Form](OuissalprojectManagementFrontend/src/assets/screenshots/new%20project%20form%20.png)
 
 ### New Task Form
-![New Task Form](OuissalprojectManagementFrontend/src/assets/screenshots/new%20task%20form.png)
+![New Task Form](OuissalprojectManagementFrontend/src/assets/screenshots/new%20task%20form%20.png)
 
 ### Tasks List Page
 ![Tasks List Page](OuissalprojectManagementFrontend/src/assets/screenshots/tasks%20list%20page.png)
