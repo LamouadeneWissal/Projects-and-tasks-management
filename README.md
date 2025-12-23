@@ -43,7 +43,7 @@ Ouissal_project_task_management/
 
 ### 1. Clone the repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/LamouadeneWissal/Projects-and-tasks-management.git
 cd Ouissal_project_task_management
 ```
 
@@ -82,7 +82,7 @@ See backend README for full details. Key endpoints:
 
 ## 📸 Screenshots
 
-See `READMEFRONT.md` for UI screenshots:
+
 - Dashboard & List of Projects
 - Login Form
 - Signup Form
