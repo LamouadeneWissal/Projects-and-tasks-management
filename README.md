@@ -36,14 +36,6 @@ Ouissal_project_task_management/
 
 ---
 
-## 📋 Prerequisites
-
-- **Node.js** (v18.x or higher)
-- **npm** (v10.x or higher)
-- **Angular CLI** (v21.x)
-- **Java 17+**
-- **Maven 3.6+**
-- **MySQL 8.0+**
 
 ---
 
