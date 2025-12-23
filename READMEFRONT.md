@@ -21,7 +21,6 @@ A modern, responsive project and task management application built with Angular 
 
 ## 📸 Screenshots
 
-Add your screenshots below to showcase the application UI and features:
 
 
 ### Dashboard & List of Projects
@@ -87,7 +86,7 @@ Before running this application, ensure you have the following installed:
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/LamouadeneWissal/Projects-and-tasks-management.git
    cd OuissalprojectManagementFrontend
    ```
 
@@ -265,4 +264,11 @@ This frontend application requires a compatible backend API with the following e
 ## 👩‍💻 Author
 
 **wissal lamouadene** - Internship Interview Project
+
+---
+
+## DEMO VIDEO LINK
+
+https://drive.google.com/file/d/1eLo084vSOfFMcBWswFPkWYQdhcmlscyJ/view?usp=sharing
+
 

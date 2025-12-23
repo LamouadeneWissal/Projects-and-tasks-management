@@ -129,7 +129,7 @@ USE ouissal_pm_db;
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/LamouadeneWissal/Projects-and-tasks-management.git
    cd Ouissal_project_management_backend
    ```
 
@@ -325,5 +325,9 @@ curl -X PATCH http://localhost:9095/api/tasks/1/complete \
 ## 👤 Author
 
 **wissal lamouadene** - Internship Interview Project
+---
 
+## DEMO VIDEO LINK 
+
+https://drive.google.com/file/d/1eLo084vSOfFMcBWswFPkWYQdhcmlscyJ/view?usp=sharing
 
